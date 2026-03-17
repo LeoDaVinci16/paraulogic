@@ -6,17 +6,29 @@
 
     <style>
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
             background: #f5f6fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
         }
 
+        /* HERO IMAGE */
+        .hero {
+            height: 200px;
+            background-image: url("header.png"); /* <-- your image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* MAIN CARD */
         .container {
             background: white;
+            margin: -50px auto 0 auto;
             padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -26,12 +38,12 @@
         }
 
         h1 {
-            margin-bottom: 10px;
+            margin-top: 0;
+            color: #ec4a49;
         }
 
         p {
             color: #666;
-            margin-bottom: 20px;
         }
 
         input {
@@ -39,9 +51,14 @@
             padding: 12px;
             font-size: 18px;
             border-radius: 8px;
-            border: 1px solid #ccc;
+            border: 2px solid #63bcca;
             margin-bottom: 15px;
             text-align: center;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ec4a49;
         }
 
         button {
@@ -49,19 +66,20 @@
             font-size: 16px;
             border: none;
             border-radius: 8px;
-            background: #4CAF50;
+            background: #63bcca;
             color: white;
             cursor: pointer;
             transition: 0.2s;
         }
 
         button:hover {
-            background: #43a047;
+            background: #ec4a49;
         }
 
         #count {
             margin-top: 20px;
             font-weight: bold;
+            color: #ec4a49;
         }
 
         #result {
@@ -73,7 +91,8 @@
         }
 
         .word {
-            background: #e3f2fd;
+            background: #63bcca;
+            color: white;
             padding: 6px 10px;
             border-radius: 20px;
             font-size: 14px;
@@ -83,9 +102,11 @@
 
 <body>
 
-<div class="container">
-    <h1>🔤 Solucionari del paraulògic</h1>
+<div class="hero">
+    Solucionari del paraulògic
+</div>
 
+<div class="container">
     <p>Introdueix les lletres (la primera és la central)</p>
 
     <input id="letters" placeholder="ex: rosupd">

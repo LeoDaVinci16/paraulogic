@@ -51,7 +51,7 @@ async function solve() {
 
     // Mostrar resultats
     document.getElementById("count").innerText = 
-        "Total: " + results.length;
+        "Has trobat " + results.length +" paraules";
 
     document.getElementById("result").innerText = 
         results.join(", ");
