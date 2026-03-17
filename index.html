@@ -3,51 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Solucionari del paraulògic</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* Basic page setup */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f5f6fa;
             display: flex;
             justify-content: center;
+            padding: 20px;
         }
 
+        /* Main container */
         .container {
+            width: 90%;
+            max-width: 500px;
+            min-width: 300px;
             background: white;
-            margin: 50px auto;
-            padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 500px;
-            max-width: 90%;
+            padding: 2rem;
             text-align: center;
         }
 
-        /* LOGO */
+        /* Logo image */
         .logo {
-            max-width: 250px;
-            margin: 0 auto 20px auto;
+            max-width: 180px;
+            height: auto;
+            margin: 0 auto 1rem auto;
         }
 
+        /* Main title */
         h1 {
-            margin-top: 0;
             color: #ec4a49;
-            font-size: 28px;
+            font-size: 2rem;
+            margin: 0.5rem 0 1rem 0;
         }
 
+        /* Instruction text */
         p {
             color: #666;
-            margin-bottom: 20px;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
         }
 
+        /* Input field */
         input {
             width: 80%;
-            padding: 12px;
-            font-size: 18px;
+            max-width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
             border-radius: 8px;
             border: 2px solid #63bcca;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
             text-align: center;
         }
 
@@ -56,9 +65,10 @@
             border-color: #ec4a49;
         }
 
+        /* Button */
         button {
-            padding: 12px 20px;
-            font-size: 16px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
             border: none;
             border-radius: 8px;
             background: #63bcca;
@@ -71,50 +81,83 @@
             background: #ec4a49;
         }
 
+        /* Result count */
         #count {
-            margin-top: 20px;
+            margin-top: 1.5rem;
             font-weight: bold;
             color: #ec4a49;
         }
 
+        /* Word list */
         #result {
-            margin-top: 15px;
+            margin-top: 1rem;
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 0.5rem;
             justify-content: center;
         }
 
         .word {
             background: #63bcca;
             color: white;
-            padding: 6px 10px;
+            padding: 0.4rem 0.75rem;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 0.9rem;
+            word-break: break-word;
+        }
+
+        /* --- Responsive adjustments --- */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            input {
+                width: 95%;
+                font-size: 0.95rem;
+            }
+
+            button {
+                width: 100%;
+                font-size: 0.95rem;
+                padding: 0.75rem 0;
+            }
+
+            .word {
+                font-size: 0.85rem;
+                padding: 0.35rem 0.6rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 600px;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="container">
+        <!-- Logo image -->
+        <img src="logo.png" alt="Paraulogic Logo" class="logo">
 
-<div class="container">
-    <!-- Logo image -->
-    <img src="logo.png" alt="Paraulogic Logo" class="logo">
+        <!-- Main title -->
+        <h1>Solucionari del paraulògic</h1>
 
-    <!-- Main title -->
-    <h1>Solucionari del paraulògic</h1>
+        <!-- Instruction -->
+        <p>Introdueix les lletres (la primera és la central)</p>
 
-    <p>Introdueix les lletres (la primera és la central)</p>
+        <!-- Input & button -->
+        <input id="letters" placeholder="ex: rosupd">
+        <br>
+        <button onclick="solve()">Resoldre</button>
 
-    <input id="letters" placeholder="ex: rosupd">
-    <br>
-    <button onclick="solve()">Resoldre</button>
+        <!-- Results -->
+        <p id="count"></p>
+        <div id="result"></div>
+    </div>
 
-    <p id="count"></p>
-    <div id="result"></div>
-</div>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
