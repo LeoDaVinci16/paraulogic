@@ -3,19 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Solucionari del paraulògic</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 500px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #43a047;
+        }
+
+        #count {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #result {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .word {
+            background: #e3f2fd;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Solucionari del paraulògic</h1>
+<div class="container">
+    <h1>🔤 Solucionari del paraulògic</h1>
 
-    <p>Introdueix les lletres del paraulogic d'avui (la primera és la central):</p>
+    <p>Introdueix les lletres (la primera és la central)</p>
+
     <input id="letters" placeholder="ex: rosupd">
+    <br>
     <button onclick="solve()">Resoldre</button>
 
     <p id="count"></p>
     <div id="result"></div>
+</div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
