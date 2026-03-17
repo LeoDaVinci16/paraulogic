@@ -1,163 +1,222 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-    <meta charset="UTF-8">
-    <title>Solucionari del paraulògic</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        /* Basic page setup */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f6fa;
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
+<meta charset="UTF-8">
+<title>Anti-Paraulògic Honeycomb</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Main container */
-        .container {
-            width: 90%;
-            max-width: 500px;
-            min-width: 300px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 2rem;
-            text-align: center;
-        }
+<style>
+/* --- Page setup --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
 
-        /* Logo image */
-        .logo {
-            max-width: 180px;
-            height: auto;
-            margin: 0 auto 1rem auto;
-        }
+.container {
+    width: 90%;
+    max-width: 500px;
+    min-width: 300px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 2rem;
+    text-align: center;
+}
 
-        /* Main title */
-        h1 {
-            color: #ec4a49;
-            font-size: 2rem;
-            margin: 0.5rem 0 1rem 0;
-        }
+.logo {
+    max-width: 180px;
+    height: auto;
+    margin: 0 auto 1rem auto;
+}
 
-        /* Instruction text */
-        p {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
+h1 {
+    color: #ec4a49;
+    font-size: 2rem;
+    margin: 0.5rem 0 1rem 0;
+}
 
-        /* Input field */
-        input {
-            width: 80%;
-            max-width: 100%;
-            padding: 0.75rem;
-            font-size: 1rem;
-            border-radius: 8px;
-            border: 2px solid #63bcca;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
+p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
 
-        input:focus {
-            outline: none;
-            border-color: #ec4a49;
-        }
+/* --- Input --- */
+input {
+    width: 80%;
+    max-width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 2px solid #63bcca;
+    margin-bottom: 1rem;
+    text-align: center;
+}
 
-        /* Button */
-        button {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 8px;
-            background: #63bcca;
-            color: white;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+input:focus {
+    outline: none;
+    border-color: #ec4a49;
+}
 
-        button:hover {
-            background: #ec4a49;
-        }
+/* --- Button styles --- */
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #63bcca;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
 
-        /* Result count */
-        #count {
-            margin-top: 1.5rem;
-            font-weight: bold;
-            color: #ec4a49;
-        }
+button:hover {
+    background: #ec4a49;
+}
 
-        /* Word list */
-        #result {
-            margin-top: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
+/* --- Honeycomb --- */
+.hex-container {
+    position: relative;
+    width: 240px;
+    height: 210px;
+    margin: 2rem auto;
+}
 
-        .word {
-            background: #63bcca;
-            color: white;
-            padding: 0.4rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            word-break: break-word;
-        }
+.hex {
+    width: 60px;
+    height: 60px;
+    background-color: #63bcca;
+    clip-path: polygon(
+        50% 0%, 100% 25%, 100% 75%, 
+        50% 100%, 0% 75%, 0% 25%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: absolute;
+}
 
-        /* --- Responsive adjustments --- */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.5rem;
-            }
+.hex span {
+    text-transform: uppercase;
+    font-weight: normal;
+    display: inline-block;
+}
 
-            input {
-                width: 95%;
-                font-size: 0.95rem;
-            }
+/* Letter colors based on hex type */
+.hex.blue span {
+    color: black;   /* side hexes */
+}
 
-            button {
-                width: 100%;
-                font-size: 0.95rem;
-                padding: 0.75rem 0;
-            }
+.hex.red span {
+    color: white;   /* central hex */
+}
 
-            .word {
-                font-size: 0.85rem;
-                padding: 0.35rem 0.6rem;
-            }
-        }
+/* Central hexagon */
+#hex-center {
+    background-color: #ec4a49;
+    top: 75px;
+    left: 90px;
+}
 
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 600px;
-            }
-        }
-    </style>
+/* Surrounding hexes perfectly spaced */
+#hex1 { top: 20px;   left: 50px; }
+#hex2 { top: 20px;   left: 130px; }
+#hex3 { top: 75px;  left: 10px; }
+#hex4 { top: 75px;  left: 170px; }
+#hex5 { top: 130px; left: 50px; }
+#hex6 { top: 130px; left: 130px; }
+
+/* Results (for later use) */
+#count {
+    margin-top: 1.5rem;
+    font-weight: normal;
+    color: black;
+}
+
+#result {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.word {
+    background: #63bcca;
+    color: white;
+    padding: 0.4rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    word-break: break-word;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .hex-container { width: 180px; height: 160px; }
+    .hex { width: 40px; height: 40px; font-size: 1.2rem; }
+
+    #hex-center { top: 60px; left: 70px; }
+    #hex1 { top: 15px; left: 30px; }
+    #hex2 { top: 15px; left: 110px; }
+    #hex3 { top: 60px; left: 0px; }
+    #hex4 { top: 60px; left: 140px; }
+    #hex5 { top: 105px; left: 30px; }
+    #hex6 { top: 105px; left: 110px; }
+}
+</style>
 </head>
 
 <body>
-    <div class="container">
-        <!-- Logo image -->
-        <img src="logo.png" alt="Paraulogic Logo" class="logo">
+<div class="container">
+    <img src="logo.png" alt="Paraulogic Logo" class="logo">
+    <h1>Anti-Paraulògic</h1>
+    <p>Introdueix les 7 lletres del dia (la primera és la central)</p>
+    <input id="letters" placeholder="ex: rosupd" maxlength="7">
 
-        <!-- Main title -->
-        <h1>Solucionari del paraulògic</h1>
-
-        <!-- Instruction -->
-        <p>Introdueix les lletres (la primera és la central)</p>
-
-        <!-- Input & button -->
-        <input id="letters" placeholder="ex: rosupd">
-        <br>
-        <button onclick="solve()">Resoldre</button>
-
-        <!-- Results -->
-        <p id="count"></p>
-        <div id="result"></div>
+    <div class="hex-container">
+        <div class="hex blue" id="hex1"><span></span></div>
+        <div class="hex blue" id="hex2"><span></span></div>
+        <div class="hex blue" id="hex3"><span></span></div>
+        <div class="hex red" id="hex-center"><span></span></div>
+        <div class="hex blue" id="hex4"><span></span></div>
+        <div class="hex blue" id="hex5"><span></span></div>
+        <div class="hex blue" id="hex6"><span></span></div>
     </div>
 
-    <script src="script.js"></script>
+    <button onclick="solve()">Resoldre</button>
+    <p id="count"></p>
+    <div id="result"></div>
+</div>
+
+<script>
+// Define the order of hexes matching input letters
+const hexOrder = [
+    'hex-center', 'hex1', 'hex2', 'hex3', 'hex4', 'hex5', 'hex6'
+];
+
+const input = document.getElementById('letters');
+
+// Autofill hexes as user types
+input.addEventListener('input', () => {
+    const letters = input.value.toLowerCase().split('');
+    hexOrder.forEach((hexId, index) => {
+        const span = document.getElementById(hexId).querySelector('span');
+        span.textContent = letters[index] || '';
+    });
+});
+
+// Optional: button can trigger solver logic
+function solve() {
+    // Here you can call your solver using the letters from input.value
+    document.getElementById('count').innerText = "Has trobat 0 paraules (example)";
+}
+</script>
 </body>
 </html>
