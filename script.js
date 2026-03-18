@@ -24,6 +24,14 @@ async function solve() {
         return;
     }
 
+    // --- ADD THIS ---
+    input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            solve(); // same as clicking the button
+        }
+    });
+
+
     const letters = input.split("");
     const central = letters[0];
 
