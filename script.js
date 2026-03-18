@@ -1,17 +1,17 @@
+// Dictionary
 let dictionary = [];
 
-// Carrega el fitxer DISC2-LP.txt
+// Load dictionary
 async function loadDictionary() {
     const response = await fetch("DISC2-LP.txt");
     const text = await response.text();
-
     dictionary = text
         .split("\n")
         .map(w => w.trim().toLowerCase())
         .filter(w => w.length > 0);
 }
 
-// Funció principal (mateixa lògica que Python)
+// Solver
 async function solve() {
     if (dictionary.length === 0) {
         await loadDictionary();
@@ -24,28 +24,15 @@ async function solve() {
         return;
     }
 
-    // --- ADD THIS ---
-    input.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            solve(); // same as clicking the button
-        }
-    });
-
-
     const letters = input.split("");
     const central = letters[0];
 
     let results = [];
 
     for (let word of dictionary) {
-
-        // Ignora paraules amb símbols
         if (!/^[a-zà-ú]+$/.test(word)) continue;
-
-        // 1) Ha de contenir la lletra central
         if (!word.includes(central)) continue;
 
-        // 2) Només pot contenir lletres del conjunt
         let valid = true;
         for (let char of word) {
             if (!letters.includes(char)) {
@@ -53,14 +40,22 @@ async function solve() {
                 break;
             }
         }
-
         if (valid) results.push(word);
     }
 
-    // Mostrar resultats
-    document.getElementById("count").innerText = 
-        "Has trobat " + results.length +" paraules";
+    // Show results
+    document.getElementById("count").innerText =
+        "Has trobat " + results.length + " paraules";
 
-    document.getElementById("result").innerText = 
+    document.getElementById("result").innerText =
         results.join(", ");
 }
+
+// --- ENTER key triggers solve ---
+const input = document.getElementById("letters");
+input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();  // prevent form submission if inside a form
+        solve();
+    }
+});
