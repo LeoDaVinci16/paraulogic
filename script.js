@@ -3,7 +3,7 @@ let dictionary = [];
 
 // Load dictionary
 async function loadDictionary() {
-    const response = await fetch("DISC2-LP.txt");
+    const response = await fetch("diccionari_net.txt");
     const text = await response.text();
     dictionary = text
         .split("\n")
